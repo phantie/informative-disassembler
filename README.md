@@ -1,21 +1,25 @@
-The difference between dis.dis and idis.idis:
-
-    from idis import idis
-    from dis import dis
+Small set-up:
 
 ```python
-    def foo():
-        a = 1
-        b = 2
-        def f(x):
-            global b
-            b = 3
-            y = x + 1
-            return y 
-        f(4)
-        print(a)
+from idis import idis
+from dis import dis
 
-    idis(foo)
+def foo():
+    a = 1
+    b = 2
+    def f(x):
+        global b
+        b = 3
+        y = x + 1
+        return y 
+    f(4)
+    print(a)
+```
+
+The difference between dis.dis and idis.idis:
+
+```python
+idis(foo) # tweakable via the 'columns' arg
 ```
 
     Disassembly of <code object foo at 0x00000184C62C3240, file "c:\Users\phant1e\Desktop\auto\test.py", line 56>:
@@ -67,7 +71,7 @@ The difference between dis.dis and idis.idis:
              14 RETURN_VALUE    83                                                                        ✖
 
 ```python
-    dis(foo)
+dis(foo)
 ```
     
      57           0 LOAD_CONST               1 (1)
