@@ -1,4 +1,4 @@
-.. code:: python
+Code :: python
     from idis import idis
     from dis import dis
 
@@ -15,8 +15,6 @@
 
     idis(foo)
 
-
-::
     Disassembly of <code object foo at 0x0000024F84413240, file "c:\Users\phant1e\Desktop\auto\test.py", line 56>:
         hasconst -> (None, 1, 2, <code object f at 0x0000024F8430FC90, file "c:\Users\phant1e\Desktop\auto\test.py", line 59>, 'foo.<locals>.f', 4)
         hasname -> ('print',)
