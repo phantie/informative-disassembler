@@ -17,7 +17,7 @@ flag_to_pointed = {
 
 def idis(f, *,
     columns: list[Column] = (
-        Column('line_number', fmt = comp(hide_none, str), min_col_space = 8, hide_name = True),
+        Column('line_number', fmt = comp(hide_none, str), min_col_space = 4, hide_name = True),
         Column('jump_target_mark', fmt = hide_none, hide_name = True),
         Column('offset', align_left = False, hide_name = True, min_col_space = 1),
         Column('opname'),
