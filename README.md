@@ -1,4 +1,5 @@
-Code :: python
+The difference between dis.dis and idis.idis:
+
     from idis import idis
     from dis import dis
 
