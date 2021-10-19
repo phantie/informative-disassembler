@@ -108,3 +108,8 @@ dis(foo)
     
      63          12 LOAD_FAST                1 (y)
                  14 RETURN_VALUE
+
+
+Install:
+    
+    pip install git+https://github.com/phantie/informative-disassembler.git -U
