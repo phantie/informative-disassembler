@@ -17,7 +17,7 @@ flag_to_pointed = {
 
 def idis(f, *,
     columns: list[Column] = (
-        Column('line_number', fmt = comp(hide_none, str), min_col_space = 4, hide_name = True),
+        Column('starts_line', fmt = comp(hide_none, str), min_col_space = 4, hide_name = True),
         Column('jump_target_mark', fmt = hide_none, hide_name = True),
         Column('offset', align_left = False, hide_name = True, min_col_space = 1),
         Column('opname'),
@@ -31,7 +31,7 @@ def idis(f, *,
         Column('hasarg', fmt = replace_bool_with_symbol),
         # Column('starts_line', fmt = comp(hide_none, str)),
         # Column('is_jump_target', fmt = replace_bool_with_symbol)
-)):
+), ifilter = lambda i: True):
     if inspect.isfunction(f):
         f = f.__code__
 
@@ -45,11 +45,12 @@ def idis(f, *,
     closures = (f, *iter_closures(f))
 
     col_name_to_max_line_len = {col.name: max(max(
-        [{col.name: len(col.fmt(getattr(inst, col.name))) for col in columns} for inst in itertools.chain.from_iterable(map(dis.get_instructions, closures))],
+        [{col.name: len(col.fmt(getattr(inst, col.name))) for col in columns}
+        for inst in filter(ifilter, itertools.chain.from_iterable(map(dis.get_instructions, closures)))],
         key = lambda x: x[col.name])[col.name], len(col.public_name)) for col in columns}
 
     for closure in closures:
-        instructions = tuple(dis.get_instructions(closure))
+        instructions = tuple(filter(ifilter, dis.get_instructions(closure)))
 
         print(f'Disassembly of {closure!r}:')
         for flag in {inst.flag for inst in instructions if inst.flag}:
