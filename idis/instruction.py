@@ -53,7 +53,22 @@ class missing(str):
 missing = missing()
 
 
+
+
+
+# class IGroup:
+#     def foo(i):
+#         ...
+
+
+# class IGroupManager:
+#     def __init__(self, instructions, groups):
+#         self.instructions = instructions
+
+
+
 class Instruction(dis.Instruction):
+
     @property
     def line_number(self):
         return self.starts_line

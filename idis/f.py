@@ -44,9 +44,9 @@ def idis(f, *,
 
     closures = (f, *iter_closures(f))
 
-    col_name_to_max_line_len = {col.name: max(max(
-        [{col.name: len(col.fmt(getattr(inst, col.name))) for col in columns}
-        for inst in filter(ifilter, itertools.chain.from_iterable(map(dis.get_instructions, closures)))],
+    col_name_to_max_line_len = {col.name: max(max(({col.name: 0 for col in columns},
+        *({col.name: len(col.fmt(getattr(inst, col.name))) for col in columns}
+        for inst in filter(ifilter, itertools.chain.from_iterable(map(dis.get_instructions, closures))))),
         key = lambda x: x[col.name])[col.name], len(col.public_name)) for col in columns}
 
     for closure in closures:
