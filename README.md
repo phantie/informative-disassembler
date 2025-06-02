@@ -1,4 +1,6 @@
-Small set-up:
+# Informative disassembler
+
+## Small set-up:
 
 ```python
 from idis import idis
@@ -16,7 +18,11 @@ def foo():
     print(a)
 ```
 
-The difference between dis.dis and idis.idis:
+---
+
+## The difference between dis.dis and idis.idis:
+
+### ***idis.idis*** 👍
 
 ```python
 idis(foo) # tweakable via the 'columns' arg
@@ -69,6 +75,8 @@ idis(foo) # tweakable via the 'columns' arg
     
     63       12 LOAD_FAST       124      haslocal     1   co_varnames[1]   y                 str        ✔
              14 RETURN_VALUE    83                                                                        ✖
+
+### dis.dis 😒
 
 ```python
 dis(foo)
